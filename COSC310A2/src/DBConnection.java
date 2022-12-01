@@ -1,6 +1,8 @@
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.time.*;
 
 public class DBConnection{
     private Connection con;
@@ -326,6 +328,22 @@ public class DBConnection{
             System.out.println(e);
             return 0;
         }
+    }
+
+    public double getSalesByDate(LocalDate date){
+        try{
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("SELECT SUM(amount * price) FROM Purchase as Pu, PurchasedProduct as PP, Product as Pr WHERE Pu.id = PP.purchase_id AND PP.product_id = Pr.id AND purchase_date = '"+ Date.valueOf(date) +"';");
+            rs.next();
+            double sales = rs.getDouble(1);
+            rs.close();
+            stmt.close();
+            return sales;
+        }catch(Exception e){
+            System.out.println(e);
+            return 0;
+        }
+
     }
 
     public int[] getAllSaleIds(){

@@ -1,12 +1,25 @@
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.*;
+import org.jfree.chart.plot.*;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Manager {
     public JPanel ManagerScreen;
@@ -34,11 +47,72 @@ public class Manager {
     private JButton newOrderButton;
     private JTextPane OrderDetails;
     private JList Orders;
+    private JSpinner daysNumSpinner;
+    private JPanel chartPanel;
     private JTextField totalTextField;
 
     private JPanel Sales;
 
     NumberFormat moneyFormat;
+
+    private void updateCharts(){
+        chartPanel.setLayout(new FlowLayout((FlowLayout.CENTER)));
+
+        SpinnerModel value = new SpinnerNumberModel(30, 0, 600, 10);
+        daysNumSpinner.setModel(value);
+        daysNumSpinner.setBounds(50, 80, 70, 100);
+//        ((JSpinner.DefaultEditor) daysNumSpinner.getEditor()).getTextField().setEditable(false);
+        daysNumSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                chartPanel.removeAll();
+                chartPanel.add(createChart((int)daysNumSpinner.getValue()));
+                chartPanel.revalidate();
+                chartPanel.repaint();
+            }
+        });
+
+        chartPanel.removeAll();
+        chartPanel.add(createChart((int)daysNumSpinner.getValue()));
+    }
+
+    private ChartPanel createChart(int daysNum){
+        TimeSeries timeSeries = new TimeSeries("Date");
+
+        LocalDate rangeEnd = LocalDate.now().plusDays(1);
+        LocalDate rangeStart = rangeEnd.minusDays(daysNum);
+        int days = (int)ChronoUnit.DAYS.between(rangeStart, rangeEnd);
+        for(int i = 0; i < days; i++){
+            DBConnection con = new DBConnection();
+            LocalDate day = rangeStart.plusDays(i);
+            timeSeries.add(new Day(day.getDayOfMonth(), day.getMonthValue(), day.getYear()), con.getSalesByDate(day));
+        }
+
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        dataset.addSeries(timeSeries);
+
+        JFreeChart chart = ChartFactory.createXYBarChart(
+                null,              // title
+                "Date",             // x-axis label
+                true,               // date axis?
+                "Sales ($)",           // y-axis label
+                dataset,            // data
+                PlotOrientation.VERTICAL,       // orientation
+                false,               // create legend?
+                true,               // generate tooltips?
+                false               // generate URLs?
+        );
+
+        XYPlot plot = chart.getXYPlot();
+        DateAxis xAxis = (DateAxis) plot.getDomainAxis();
+        xAxis.setTickUnit(new DateTickUnit(DateTickUnitType.DAY,Math.ceilDiv(daysNum + 1, 30)));
+        xAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
+        xAxis.setVerticalTickLabels(true);
+
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setPreferredSize(new java.awt.Dimension(550, 400));
+        return panel;
+    }
 
     private void updateSales(){
         DBConnection con = new DBConnection();
@@ -127,6 +201,7 @@ public class Manager {
                     case 1: updateInventory();
                     case 2: updateWarnings();
                     case 3: updateOrders();
+                    case 4: updateCharts();
                 }
             }
         });

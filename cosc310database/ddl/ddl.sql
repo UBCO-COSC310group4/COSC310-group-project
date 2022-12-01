@@ -136,3 +136,56 @@ INSERT INTO Supplier VALUES (Null, "CoolGear");
 INSERT INTO Product VALUES (Null, "Skis", "669.99", 1, 10);
 INSERT INTO Product VALUES (Null, "Special Skis", "999.99", 1, 1);
 INSERT INTO Product VALUES (Null, "Hat", "19.95", 1, 50);
+
+INSERT INTO Purchase VALUES (1, STR_TO_DATE("11 5 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (1, 1, 4);
+INSERT INTO PurchasedProduct VALUES (1, 2, 1);
+
+INSERT INTO Purchase VALUES (2, STR_TO_DATE("11 7 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (2, 1, 1);
+INSERT INTO PurchasedProduct VALUES (2, 3, 3);
+
+INSERT INTO Purchase VALUES (3, STR_TO_DATE("11 15 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (3, 3, 1);
+
+INSERT INTO Purchase VALUES (4, STR_TO_DATE("11 15 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (4, 2, 1);
+
+INSERT INTO Purchase VALUES (5, STR_TO_DATE("11 28 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (5, 3, 20);
+
+INSERT INTO Purchase VALUES (6, STR_TO_DATE("11 28 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (6, 2, 2);
+
+INSERT INTO Purchase VALUES (7, STR_TO_DATE("10 10 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (7, 1, 2);
+INSERT INTO PurchasedProduct VALUES (7, 3, 3);
+
+INSERT INTO Purchase VALUES (8, STR_TO_DATE("10 15 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (8, 1, 1);
+INSERT INTO PurchasedProduct VALUES (8, 3, 2);
+
+INSERT INTO Purchase VALUES (9, STR_TO_DATE("10 17 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (9, 1, 1);
+INSERT INTO PurchasedProduct VALUES (9, 3, 7);
+
+INSERT INTO Purchase VALUES (10, STR_TO_DATE("10 3 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (10, 1, 1);
+INSERT INTO PurchasedProduct VALUES (10, 3, 2);
+
+INSERT INTO Purchase VALUES (11, STR_TO_DATE("11 27 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (11, 1, 1);
+INSERT INTO PurchasedProduct VALUES (11, 2, 1);
+INSERT INTO PurchasedProduct VALUES (11, 3, 1);
+
+INSERT INTO Purchase VALUES (12, STR_TO_DATE("11 28 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (12, 2, 2);
+
+INSERT INTO Purchase VALUES (13, STR_TO_DATE("11 29 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (13, 3, 12);
+
+INSERT INTO Purchase VALUES (14, STR_TO_DATE("11 30 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (14, 1, 3);
+
+INSERT INTO Purchase VALUES (15, STR_TO_DATE("11 26 2022", "%m %e %Y"), null);
+INSERT INTO PurchasedProduct VALUES (15, 2, 2);

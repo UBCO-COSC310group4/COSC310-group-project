@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="COSC310-group-project">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/mysql-connector-j-8.0.31.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javax.activation-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javax.mail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

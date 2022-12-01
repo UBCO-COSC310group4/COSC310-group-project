@@ -28,3 +28,5 @@ The supplier class has methods to add and delete suppliers and the class is conn
 
 Lastly, the manager class has several methods which are easy to interpret such as to manage sales, the inventory and the low stock alerts
 warning. The manager can add item and delte items in the inventory through respective methods.
+
+We have now implemented further features in the system. We have added the ability to create new employees, In the manage employees screen, there are fields to enter the first name, last name, username, password, and enable manager abilities. Once the add employee button is pressed, the employee is added to the database and they are able to log in using the entered credentials. We also added the ability to create customer accounts with the system by using their first name, last name and email address. The system will send the purchase receipt via email if the button to do so is clicked. We also added the feature to create and view new orders.

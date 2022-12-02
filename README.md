@@ -1,4 +1,28 @@
 # COSC310-group-project
+
+## Github Link:
+
+https://github.com/UBCO-COSC310group4/COSC310-group-project/tree/individual-stu (My individual additions are on the branch ```individual-stu```)
+
+## Stuart McGorman Invidivual Project Updates
+
+### New Features
+
+- #### Sales Charts Page
+
+I have added a page on the manager screen where the user can view sales charts usings the sales records in our data base. It displays sales per day and also includes a spinner where you can select the interval of days you want to see the data over. I used to JFreeChart API to implement this feature
+
+- #### Output to PDF Feature
+
+I have added the ability for our program to output tables, charts, and other information to pdf files. On the sales charts page I added a save to pdf button which askes the user to select a location and file name and then generates 2 page a pdf file containing the current chart on the first page and a list off all sales on the second page. I also added a save to pdf feature to the create order page where the user to select a checkbox before submitting and order. If the checkbox is sellected the program brings up the file selection menu and then saves a pdf containing a table of the order info. I used the JFreePDF API to implement this feature
+
+### Lisst of newly added APIs
+
+- JFreeCharts: https://www.jfree.org/jfreechart/
+- JFreePDF: https://github.com/jfree/jfreepdf
+
+## Previous Documentation:
+
 Our project is an inventory management system for a retail store. The system will have 3 main components, a central database which keeps track of all information, 
 an interface to be used by cashiers which can make transactions and update the database, and a more in-depth interface to be used by a manager to manage stock, 
 input new orders, view sales stats and stock warnings, etc. The main features that we need to implement are a login system for entering credentials to access either 

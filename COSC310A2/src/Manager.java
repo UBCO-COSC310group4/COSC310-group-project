@@ -6,19 +6,25 @@ import org.jfree.chart.plot.*;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.pdf.PDFDocument;
+import org.jfree.pdf.PDFGraphics2D;
+import org.jfree.pdf.PDFHints;
+import org.jfree.pdf.Page;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.channels.FileChannel;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 public class Manager {
@@ -49,10 +55,10 @@ public class Manager {
     private JList Orders;
     private JSpinner daysNumSpinner;
     private JPanel chartPanel;
+    private JButton writeToPdfButton;
     private JTextField totalTextField;
 
-    private JPanel Sales;
-
+    private JFreeChart chart;
     NumberFormat moneyFormat;
 
     private void updateCharts(){
@@ -91,8 +97,8 @@ public class Manager {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(timeSeries);
 
-        JFreeChart chart = ChartFactory.createXYBarChart(
-                null,              // title
+        chart = ChartFactory.createXYBarChart(
+                "Sales Report",              // title
                 "Date",             // x-axis label
                 true,               // date axis?
                 "Sales ($)",           // y-axis label
@@ -312,6 +318,30 @@ public class Manager {
             public void actionPerformed(ActionEvent e) {
                 Main.frame.setContentPane(new Orders().OrderScreen);
                 Main.frame.pack();
+            }
+        });
+
+        writeToPdfButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PDFDocument pdfDoc = new PDFDocument();
+                pdfDoc.setTitle("Sales Report");
+                Page page2 = pdfDoc.createPage(new Rectangle(794, 1123));
+                PDFGraphics2D g2p2 = page2.getGraphics2D();
+                chart.draw(g2p2, new Rectangle(91, 300, 612, 468));
+                g2p2.setBackground(new Color(255,255,255));
+                Page page3 = pdfDoc.createPage(new Rectangle(794, 1123));
+                PDFGraphics2D g2p3 = page3.getGraphics2D();
+                g2p3.translate(100, 100);
+                Manager.this.SalesList.paint(g2p3);
+
+                JFileChooser fileChooser = new JFileChooser();
+                FileNameExtensionFilter pdfFilter = new FileNameExtensionFilter("pdf files (*.pdf)", "pdf");
+                fileChooser.addChoosableFileFilter(pdfFilter);
+                fileChooser.setFileFilter(pdfFilter);
+                if(fileChooser.showSaveDialog(Manager.this.ManagerScreen) == JFileChooser.APPROVE_OPTION){
+                    pdfDoc.writeToFile(fileChooser.getSelectedFile());
+                }
             }
         });
     }

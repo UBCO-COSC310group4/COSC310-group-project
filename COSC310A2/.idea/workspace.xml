@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d6103e90-2d30-42d0-919b-61369f9ebec8" name="Changes" comment="uncommented login checks (had disabled them for easy testing)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Login$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Login$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COSC310A2/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COSC310A2/Manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Orders.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Orders.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Orders.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

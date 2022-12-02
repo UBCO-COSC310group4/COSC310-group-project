@@ -1,5 +1,11 @@
+import org.jfree.pdf.PDFDocument;
+import org.jfree.pdf.PDFGraphics2D;
+import org.jfree.pdf.Page;
+
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +19,7 @@ public class Orders {
     JPanel OrderScreen;
     private JButton clearOrderButton;
     private JButton submitOrderButton;
+    private JCheckBox saveToPDFCheckBox;
 
 
     public void setUpTable(){
@@ -99,6 +106,24 @@ public class Orders {
                 DBConnection con = new DBConnection();
                 con.addOrder(productIds, productAmounts, supplierId);
                 con.close();
+
+                if(saveToPDFCheckBox.isSelected()){
+                    PDFDocument pdfDoc = new PDFDocument();
+                    pdfDoc.setTitle("Sales Report");
+                    Page page = pdfDoc.createPage(new Rectangle(1123, 794));
+                    PDFGraphics2D g2p = page.getGraphics2D();
+                    g2p.translate(50, 50);
+                    OrderTable.paint(g2p);
+
+                    JFileChooser fileChooser = new JFileChooser();
+                    FileNameExtensionFilter pdfFilter = new FileNameExtensionFilter("pdf files (*.pdf)", "pdf");
+                    fileChooser.addChoosableFileFilter(pdfFilter);
+                    fileChooser.setFileFilter(pdfFilter);
+                    if(fileChooser.showSaveDialog(Orders.this.OrderScreen) == JFileChooser.APPROVE_OPTION){
+                        pdfDoc.writeToFile(fileChooser.getSelectedFile());
+                    }
+                }
+
                 for(int j=0;(OrderTable.getModel().getRowCount())>j;j++){
                     OrderTable.getModel().setValueAt("0",j,4);
                 }

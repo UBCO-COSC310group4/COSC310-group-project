@@ -20,6 +20,7 @@ public class Orders {
     private JButton clearOrderButton;
     private JButton submitOrderButton;
     private JCheckBox saveToPDFCheckBox;
+    private JScrollPane orderTableForPrinting;
 
 
     public void setUpTable(){
@@ -113,7 +114,7 @@ public class Orders {
                     Page page = pdfDoc.createPage(new Rectangle(1123, 794));
                     PDFGraphics2D g2p = page.getGraphics2D();
                     g2p.translate(50, 50);
-                    OrderTable.paint(g2p);
+                    orderTableForPrinting.paint(g2p);
 
                     JFileChooser fileChooser = new JFileChooser();
                     FileNameExtensionFilter pdfFilter = new FileNameExtensionFilter("pdf files (*.pdf)", "pdf");
